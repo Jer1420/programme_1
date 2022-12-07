@@ -21,12 +21,19 @@ def create_user():
     if loginc not in user_dict.keys():
         user_dict[loginc] = [] #creation du dictionnaire vide
     else:
-        print("Ce login existe déja.")
+        print("Ce login existe déja, veuillez réessayez")
+        create_user()
 
 
 def remove_user():
-    d = input("Sélectionnez le login a supprimer : ")
-    del user_dict [d]
+    login = input("Sélectionnez le login a supprimer : ")
+    #del user_dict [d]
+    if login in user_dict.keys():
+        del user_dict[login]
+        print("Le login",login,"a bien été supprimer ")
+    else:
+        print("Ce login n'existe pas")
+        remove_user()
 
 
 def show_main_menu() -> None:
