@@ -23,8 +23,10 @@ def create_user():
     else:
         print("Ce login existe déja.")
 
+
 def remove_user():
-    pass
+    d = input("Sélectionnez le login a supprimer : ")
+    del user_dict [d]
 
 
 def show_main_menu() -> None:
