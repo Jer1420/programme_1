@@ -12,13 +12,14 @@ def ask(prompt: str) -> int:
 
 def do_login():
     login = input("Entrer votre Login : ")
+    if login not in user_dict.keys():
+        create_user()
 
 
 def create_user():
-    loginc = input("Entrer votre Login : ")
-    #psw = input("Entrer votre mot de passe : ")
+    loginc = input("Créer un nouveau Login : ")
     if loginc not in user_dict.keys():
-        user_dict[loginc] = []
+        user_dict[loginc] = [] #creation du dictionnaire vide
     else:
         print("Ce login existe déja.")
 
@@ -54,6 +55,6 @@ def show_main_menu() -> None:
 
 
 if __name__ == '__main__':
-    user_dict = {}
+    user_dict = {} #dictionnaire des login
     while True:
         show_main_menu()
