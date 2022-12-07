@@ -11,12 +11,16 @@ def ask(prompt: str) -> int:
 
 
 def do_login():
-    pass
+    login = input("Entrer votre Login : ")
 
 
 def create_user():
-    pass
-
+    loginc = input("Entrer votre Login : ")
+    #psw = input("Entrer votre mot de passe : ")
+    if loginc not in user_dict.keys():
+        user_dict[loginc] = []
+    else:
+        print("Ce login existe déja.")
 
 def remove_user():
     pass
@@ -50,5 +54,6 @@ def show_main_menu() -> None:
 
 
 if __name__ == '__main__':
+    user_dict = {}
     while True:
         show_main_menu()
