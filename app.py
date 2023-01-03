@@ -48,15 +48,17 @@ def show_main_menu() -> None:
     """ Show the main menu """
     print("\n", " CODE-MOI ".center(20, "\U0001F600"))
 
-    print("""
-          \r1. Login
-          \r2. New user
-          \r3. Remove user
-
-          \r0. Quit
+    print("""#                                #
+          \r#       1. Login                 #
+          \r#       2. New user              #
+          \r#       3. Remove user           #
+#                                #
+          \r#       0. Quit                  #
+#                                #
+##################################
     """)
 
-    choice = ask("Your choice: ")  # ask sends 0 numeric value
+    choice = ask("\U0001F607" " Your choice : ""\n")  # ask sends 0 numeric value
 
     match choice:
         case 0:
