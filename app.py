@@ -1,3 +1,4 @@
+import test
 def ask(prompt: str) -> int:
     """
     Prompts user to make a choice
@@ -20,7 +21,7 @@ def do_login():
     elif passw not in dict_vault.keys():
         print("Erreur de mot de passe...")
     else:
-        show_vault_menu()
+        test.show_vault_menu(passw)
 
 def create_user():
     """ create a new user"""
@@ -30,7 +31,7 @@ def create_user():
         dict_vault[passw] = []
         user_dict[loginc] = dict_vault
         print("Le login :", loginc, ", et le mot de passe :", passw, " ont bien été créer")
-        show_vault_menu()
+        test.show_vault_menu(passw)
     else:
         print("Ce login existe déja, veuillez réessayez")
         create_user()
@@ -79,11 +80,8 @@ def show_main_menu() -> None:
 
 if __name__ == '__main__':
 
-    dict_vault_item: dict= {}
-    user_dict_item: dict= {}
-    dict_all: dict = {}
-    dict_vault: dict = {}
-    dict_vaultitem: dict = {}
-    user_dict = {}  # dictionnaire des login
+    dict_vaultitem: dict = {"amazon": ("jeremy22","666")}
+    dict_vault: dict = {"1234": dict_vaultitem}
+    user_dict = {"Jeremy": dict_vault}  # dictionnaire des login
     while True:
         show_main_menu()

@@ -1,5 +1,4 @@
 import app
-
 def ask(prompt: str) -> int:
     """
     Prompts user to make a choice
@@ -15,18 +14,18 @@ def remove_item():
 
     print("occupé")
 
-def add_new_item():
+def add_new_item(password_user: str):
 
-    name_item: str = input("Créer un nouveau nom: ")
-    login_item: str = input("Créer un nouveau pseudo: ")
-    passw_item: str = input("Créer un nouveau mot de passe: ")
-    if login_item not in user_dict.keys():
-        dict_vault_item[passw_item] = []
-        user_dict_item[login_item] = dict_vault_item
-        dict_vault_all = {name_item: (login_item, passw_item)}
-        print("Le nom:",name_item,", le login:", login_item, ", et le mot de passe:", passw_item, " ont bien été créer")
-        print(dict_vault_all)
-
+    # type and assign
+    name_item: str = input("nom:")
+    login_item : str = input("pseudo:")
+    password_item : str = input("mot de passe:")
+    # vérifie si la donnée exist déjà
+    if name_item not in app.dict_vaultitem.keys():
+        app.dict_vaultitem[name_item] = (login_item,password_item)
+        app.dict_vault[password_user: app.dict_vaultitem]
+    else:
+        print("Cet élément exist déjà!")
 
 def change_item():
 
@@ -40,7 +39,7 @@ def search_item():
 # todo cherche l'element demander et l affiche
     print("occupé")
 
-def show_vault_menu():
+def show_vault_menu(passw: str):
     """Menu du coffre fort"""
     print("\n", " BIENVENU CHER TOI ".center(25, "\U0001F600"))
 
@@ -62,7 +61,7 @@ def show_vault_menu():
             print("\n", " MERCI A BIENTOT ".center(30, "\U0001F600"))
             exit()
         case 1:
-            add_new_item()
+            add_new_item(passw)
         case 2:
             remove_item()
         case 3:
@@ -71,16 +70,3 @@ def show_vault_menu():
             search_item()
         case _:
             print("Choix invalide...")
-
-
-
-if __name__ == '__main__':
-
-    dict_vault_item: dict= {}
-    user_dict_item: dict= {}
-    dict_all: dict = {}
-    dict_vault: dict = {}
-    dict_vaultitem: dict = {}
-    user_dict = {}  # dictionnaire des login
-    while True:
-        show_vault_menu()
