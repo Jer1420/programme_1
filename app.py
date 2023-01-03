@@ -15,19 +15,19 @@ def do_login():
     if login not in user_dict.keys():
         create_user()
     passw = input("Entrer votre mot de passe : ")
-    if passw not in user_dict.keys():
+
+    if passw not in dict_vault.keys():
         print("Erreur de mot de passe...")
 
 
-
-
 def create_user():
-    loginc = input("Créer un nouveau Login : ")
+    """ create a new user"""
+    loginc: str = input("Créer un nouveau pseudo : ")
+    passw: str = input("Créer un nouveau mot de passe : ")
     if loginc not in user_dict.keys():
-        user_dict[loginc] = [] #creation du dictionnaire vide
-        passw = input("Créer un nouveau mot de pass : ")
-        user_dict[passw] = []
-        print("Le login :",loginc,", et le mot de passe :",passw," ont bien été créer")
+        dict_vault[passw] = []
+        user_dict[loginc] = dict_vault
+        print("Le login :", loginc, ", et le mot de passe :", passw, " ont bien été créer")
     else:
         print("Ce login existe déja, veuillez réessayez")
         create_user()
@@ -35,10 +35,10 @@ def create_user():
 
 def remove_user():
     login = input("Sélectionnez le login a supprimer : ")
-    #del user_dict [d]
+    # del user_dict [d]
     if login in user_dict.keys():
         del user_dict[login]
-        print("Le login ",login," a bien été supprimer ")
+        print("Le login ", login, " a bien été supprimer ")
     else:
         print("Ce login n'existe pas")
         remove_user()
@@ -46,7 +46,7 @@ def remove_user():
 
 def show_main_menu() -> None:
     """ Show the main menu """
-    print("\n", " CODE-MOI ".center(20,"\U0001F600"))
+    print("\n", " CODE-MOI ".center(20, "\U0001F600"))
 
     print("""
           \r1. Login
@@ -60,7 +60,7 @@ def show_main_menu() -> None:
 
     match choice:
         case 0:
-            print("\n", " MERCI A BIENTOT ".center(30,"\U0001F600"))
+            print("\n", " MERCI A BIENTOT ".center(30, "\U0001F600"))
             exit()
         case 1:
             do_login()
@@ -73,6 +73,8 @@ def show_main_menu() -> None:
 
 
 if __name__ == '__main__':
-    user_dict = {} #dictionnaire des login
+    dict_vault: dict = {}
+    dict_vaultitem: dict = {}
+    user_dict = {}  # dictionnaire des login
     while True:
         show_main_menu()
