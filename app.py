@@ -20,6 +20,9 @@ def create_user():
     loginc = input("Créer un nouveau Login : ")
     if loginc not in user_dict.keys():
         user_dict[loginc] = [] #creation du dictionnaire vide
+        passw = input("Créer un nouveau mot de pass : ")
+        user_dict[passw] = []
+        print("Le login :",loginc,", et le mot de passe :",passw," ont bien été créer")
     else:
         print("Ce login existe déja, veuillez réessayez")
         create_user()
