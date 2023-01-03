@@ -14,6 +14,11 @@ def do_login():
     login = input("Entrer votre Login : ")
     if login not in user_dict.keys():
         create_user()
+    passw = input("Entrer votre mot de passe : ")
+    if passw not in user_dict.keys():
+        print("Erreur de mot de passe...")
+
+
 
 
 def create_user():
