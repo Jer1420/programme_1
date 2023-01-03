@@ -60,6 +60,7 @@ def show_main_menu() -> None:
 
     match choice:
         case 0:
+            print("\n", " MERCI A BIENTOT ".center(30,"\U0001F600"))
             exit()
         case 1:
             do_login()
