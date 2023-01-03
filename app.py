@@ -30,7 +30,7 @@ def remove_user():
     #del user_dict [d]
     if login in user_dict.keys():
         del user_dict[login]
-        print("Le login",login,"a bien été supprimer ")
+        print("Le login ",login," a bien été supprimer ")
     else:
         print("Ce login n'existe pas")
         remove_user()
@@ -38,7 +38,7 @@ def remove_user():
 
 def show_main_menu() -> None:
     """ Show the main menu """
-    print("PASSMAN - a PASSword MANager".center(100, '#'))
+    print("\n", " CODE-MOI ".center(20,"\U0001F600"))
 
     print("""
           \r1. Login
@@ -60,7 +60,7 @@ def show_main_menu() -> None:
         case 3:
             remove_user()
         case _:
-            print("Invalide choice. Try again")
+            print("Choix invalide...")
 
 
 if __name__ == '__main__':
