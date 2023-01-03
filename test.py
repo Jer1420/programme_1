@@ -16,8 +16,7 @@ def remove_item():
     print("occupé")
 
 def add_new_item():
-    # todo ajoute un nouvelle element dans le coffre
-    """ create a new user"""
+
     name_item: str = input("Créer un nouveau nom: ")
     login_item: str = input("Créer un nouveau pseudo: ")
     passw_item: str = input("Créer un nouveau mot de passe: ")
