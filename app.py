@@ -31,7 +31,7 @@ def create_user():
         dict_vault[passw] = []
         user_dict[loginc] = dict_vault
         print("Le login :", loginc, ", et le mot de passe :", passw, " ont bien été créer")
-        test.show_vault_menu(passw)
+        show_vault_menu(passw)
     else:
         print("Ce login existe déja, veuillez réessayez")
         create_user()
