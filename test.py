@@ -6,7 +6,7 @@ def remove_user():
         print("Le login ", login, " a bien été supprimer ")
     else:
         print("Ce login n'existe pas")
-        remove_user()
+        show_main_menu()
 
 def create_user():
     """create a new user"""
@@ -36,7 +36,7 @@ def change_item():
 def search_item():
 
 
-    print(user_dict, dict_vaultitem)
+    print(user_dict,)
 def add_new_item():
 
     name_item: str = input("Entrer le nom : ")
