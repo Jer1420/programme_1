@@ -1,3 +1,6 @@
+
+
+
 def remove_user():
     login = input("Sélectionnez le login a supprimer : ")
     # del user_dict [d]
@@ -9,49 +12,55 @@ def remove_user():
         show_main_menu()
 
 
+
 def create_user():
     """create a new user"""
+    user_dict : dict
     loginc: str = input("Créer un nouveau pseudo : ")
     passw: str = input("Créer un nouveau mot de passe : ")
-    dict_temp : dict
-    if loginc not in user_dict.keys():
-        dict_temp = {passw : {}}
-        user_dict[loginc] = dict_temp
-        print("Le login :", loginc, ", et le mot de passe :", passw, " ont bien été créer")
-        show_vault_menu()
+    for i in range(len(user_list)):
+        user_dict = user_list[i]
+        keys:list = list(user_dict.keys())
+        if loginc == keys[0]:
+            print("Ce login existe déja, veuillez réessayez")
+            create_user()
 
-    else:
-        print("Ce login existe déja, veuillez réessayez")
-        create_user()
+    # création du nouvel utilisateur
+    user_list.append({loginc:{passw:{"":("","")}}})
+    print("Votre compte a bien été créer, merci")
+    show_vault_menu(loginc,passw)
 
 
 def remove_item():
-
     print("occupé")
 
 
 def change_item():
-
     # todo modifie l'element demander
     print("occupé")
 
 
-def search_item():
+def search_item(user_password:str):
+    # récupère tout les keys du dict_vaultItem lier a l'utilisateur
+    list_name : list = dict_vault[user_password]
+    # affiche la liste de nom de chaque petit coffre (VaultItem)
+    print(list_name)
+    # demande a l'user d'
+    answer : str = input("choisir:")
+    # affiche les données de l'élément choisi par l'utilisateur
+    data_item : tuple = dict_vaultItem[answer]
+    print(f"nom:{answer} pseudo:{data_item[0]} mot de passe:{data_item[1]}")
+    input("quitté (oui/non):")
+    show_vault_menu(user_password)
 
-    print(
-        user_dict,
-    )
-
-
-def add_new_item():
-
+def add_new_item(loginc:str , passw : str)->None:
     name_item: str = input("Entrer le nom : ")
     login_item: str = input("Pseudo : ")
     password_item: str = input("Mot de passe : ")
-    if name_item not in dict_vaultitem.keys():
-        dict_vaultitem[name_item] = {name_item: (login_item, password_item)}
-        dict_vault[password_item] = {password_item: dict_vaultitem}
-        dict_main = {login_item: dict_vault}
+    list_name : list = dict_vault[user_password]
+    if name_item not in list_name:
+        dict_vault[user_password] = name_item
+        dict_vaultItem[name_item] = (login_item,password_item)
         print(
             "Le nom: ",
             password_item,
@@ -61,15 +70,20 @@ def add_new_item():
             password_item,
             "\nOnt bien été créer",
         )
-        show_vault_menu()
+        show_vault_menu(user_password)
 
     else:
         print("Ce nom existe déja, veuillez réessayez")
-        add_new_item()
+        add_new_item(user_password)
 
 
-def show_vault_menu():
-    """Menu du coffre fort"""
+def show_vault_menu(loginc : str,passw:str)->None:
+    """
+    Menu du coffre fort
+    :param loginc:
+    :param passw:
+    :return:
+    """
     print("\n", " BIENVENU CHER TOI ".center(25, "\U0001F600"))
 
     print(
@@ -79,7 +93,7 @@ def show_vault_menu():
           \r#       3. Change item           #
           \r#       4. Search item           #
 #                                #
-          \r#       0. Quit                  #
+          \r#       0. Back                  #
 #                                #
 ##################################
     """
@@ -90,15 +104,15 @@ def show_vault_menu():
     match choice:
         case 0:
             print("\n", " MERCI A BIENTOT ".center(30, "\U0001F600"))
-            exit()
+            show_main_menu()
         case 1:
-            add_new_item()
+            add_new_item(loginc,passw)
         case 2:
-            remove_item()
+            remove_item(loginc,passw)
         case 3:
-            change_item()
+            change_item(loginc,passw)
         case 4:
-            search_item()
+            search_item(loginc,passw)
         case _:
             print("Choix invalide...")
 
@@ -106,15 +120,18 @@ def show_vault_menu():
 def do_login():
     login = input("Entrer votre Login : ")
     passw = input("Entrer votre mot de passe : ")
-    if login not in user_dict.keys():
-        print("Données inexistantes veuillez réesayer")
-        show_main_menu()
+    for i in range (len(user_list)):
+        user_dict : dict = user_list[i]
+        list_login : list = list(user_dict.keys())
+        if login == list_login[0]:
+            vault_dict: dict = user_dict[login]
+            list_vault: list = list(vault_dict.keys())
+            if passw == list_vault[0]:
+                print("Bienvenu")
+                show_vault_menu(login, passw)
 
-    elif passw not in dict_vault.keys():
-        print("Erreur de mot de passe...")
-    else:
-        show_vault_menu()
-
+    print("Les données entrer sont incorrecte")
+    show_main_menu()
 
 def ask(prompt: str) -> int:
     """
@@ -161,9 +178,6 @@ def show_main_menu() -> None:
 
 
 if __name__ == "__main__":
-
-    dict_vaultitem: dict = {"amazon": ("jeremy22", "666")}
-    dict_vault: dict = {"1234": dict_vaultitem}
-    user_dict = {"Jeremy": dict_vault}  # dictionnaire des login
+    user_list : list = [{"Adrien":{"2310":{"Amazon":("Adrien23","1245")}}}]
     while True:
         show_main_menu()
